@@ -13,20 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package br.com.darot.ava.repository;
+package br.com.darot.ava.dto;
 
-import java.util.Optional;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import java.io.Serializable;
 
 import br.com.darot.ava.models.User;
+import lombok.Data;
 
-@Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+@Data
+public class AuthorDTO implements Serializable {
 
-	public Optional<User> findByEmail(String email);
+	private static final long serialVersionUID = 1L;
 
-	public Optional<User> findById(Long id);
+	public String name;
+	public String email;
+
+	public static AuthorDTO convert(User user) {
+		var dto = new AuthorDTO();
+		dto.setName(user.getName());
+		dto.setEmail(user.getEmail());
+		return dto;
+	}
 
 }

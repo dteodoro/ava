@@ -13,20 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package br.com.darot.ava.repository;
+package br.com.darot.ava.models;
 
-import java.util.Optional;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import br.com.darot.ava.models.enumerators.ActivityTypeEnum;
+import lombok.Data;
 
-import br.com.darot.ava.models.User;
+@Entity
+@Data
+public class Activity {
 
-@Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-
-	public Optional<User> findByEmail(String email);
-
-	public Optional<User> findById(Long id);
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String title;
+	private ActivityTypeEnum activityType;
 
 }

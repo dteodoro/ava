@@ -13,20 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package br.com.darot.ava.repository;
+package br.com.darot.ava.services;
 
-import java.util.Optional;
+import org.springframework.stereotype.Service;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import br.com.darot.ava.models.Course;
+import br.com.darot.ava.repository.CourseRepository;
 
-import br.com.darot.ava.models.User;
+@Service
+public class CourseService {
 
-@Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+	private CourseRepository repository;
 
-	public Optional<User> findByEmail(String email);
-
-	public Optional<User> findById(Long id);
+	public void createCourse(Course course) {
+		repository.save(course);
+	}
 
 }
