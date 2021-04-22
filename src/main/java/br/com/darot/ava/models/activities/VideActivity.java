@@ -13,20 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package br.com.darot.ava.repository;
+package br.com.darot.ava.models.activities;
 
-import java.util.Optional;
+public class VideActivity implements ActivityType {
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
-import br.com.darot.ava.models.User;
-
-@Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-
-	public Optional<User> findByEmail(String email);
-
-	public Optional<User> findById(Long id);
+	@Override
+	public ActivityType onSelected() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

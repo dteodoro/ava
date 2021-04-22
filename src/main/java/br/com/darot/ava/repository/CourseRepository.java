@@ -15,18 +15,12 @@
  */
 package br.com.darot.ava.repository;
 
-import java.util.Optional;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.darot.ava.models.User;
+import br.com.darot.ava.models.Course;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-
-	public Optional<User> findByEmail(String email);
-
-	public Optional<User> findById(Long id);
-
+public interface CourseRepository extends JpaRepository<Course, Long> {
+	public Course save(Course course);
 }

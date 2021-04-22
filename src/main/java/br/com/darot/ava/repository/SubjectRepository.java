@@ -20,13 +20,9 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.darot.ava.models.User;
+import br.com.darot.ava.models.Subject;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-
-	public Optional<User> findByEmail(String email);
-
-	public Optional<User> findById(Long id);
-
+public interface SubjectRepository extends JpaRepository<Subject, Long> {
+	public Optional<Subject> findById(Long id);
 }
