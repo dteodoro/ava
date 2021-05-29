@@ -17,6 +17,11 @@ package br.com.darot.ava.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+
+import com.sun.istack.NotNull;
+
 import br.com.darot.ava.models.User;
 import lombok.Data;
 
@@ -26,6 +31,9 @@ public class AuthorDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	public String name;
+	@NotBlank
+	@NotEmpty
+	@NotNull
 	public String email;
 
 	public static AuthorDTO convert(User user) {

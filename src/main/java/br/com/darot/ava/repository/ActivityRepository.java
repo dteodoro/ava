@@ -15,12 +15,16 @@
  */
 package br.com.darot.ava.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.darot.ava.models.Course;
+import br.com.darot.ava.models.Activity;
 
 @Repository
-public interface CourseRepository extends JpaRepository<Course, Long> {
+public interface ActivityRepository extends JpaRepository<Activity, Long> {
+
+	public List<Activity> findBySubjectId(Long subjectId);
 
 }

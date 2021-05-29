@@ -16,9 +16,11 @@
 package br.com.darot.ava.models;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import br.com.darot.ava.models.enumerators.ActivityTypeEnum;
 import lombok.Data;
@@ -32,5 +34,8 @@ public class Activity {
 	private Long id;
 	private String title;
 	private ActivityTypeEnum activityType;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Subject subject;
 
 }

@@ -13,14 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package br.com.darot.ava.repository;
+package br.com.darot.ava.form;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
-import br.com.darot.ava.models.Course;
-
-@Repository
-public interface CourseRepository extends JpaRepository<Course, Long> {
+public class ActivityForm {
 
 }
