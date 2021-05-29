@@ -13,36 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package br.com.darot.ava.models;
+package br.com.darot.ava.dto;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-
+import br.com.darot.ava.models.Subject;
 import lombok.Data;
 
-@Entity
 @Data
-public class Subject {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class SubjectDetailsDTO {
 	private Long id;
 	private String title;
 	private Integer sequence;
+	private List<ActivityDTO> activities;
 
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "subject_id", referencedColumnName = "id")
-	private List<Activity> activities;
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Course course;
-
+	public static SubjectDetailsDTO convert(Subject subject) {
+		SubjectDetailsDTO subjectDto = new SubjectDetailsDTO();
+		subjectDto.setId(subject.getId());
+		subjectDto.setTitle(subject.getTitle());
+		subjectDto.setSequence(subject.getSequence());
+		subjectDto
+				.setActivities(subject.getActivities().stream().map(ActivityDTO::convert).collect(Collectors.toList()));
+		return subjectDto;
+	}
 }

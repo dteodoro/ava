@@ -24,3 +24,30 @@ INSERT INTO USER_PROFILES (user_id,profiles_id) VALUES (
 	SELECT id FROM USER WHERE name ='Dario',
 	SELECT id FROM USER_PROFILE WHERE name='Student'
 );
+
+--Create Course
+INSERT INTO COURSE (duration, description, name, nickname) VALUES (60,'API With Spring Boot','API REST - Spring Boot','Spring Boot REST');
+INSERT INTO COURSE (duration, description, name, nickname) VALUES (60,'CSS Evolution with SASS','SASS - Super CSS','SASS');
+INSERT INTO COURSE (duration, description, name, nickname) VALUES (60,'Front-end with React','SPA with React','React on Front');
+
+--Course - Author
+
+INSERT INTO COURSE_USER (course_id,user_id) VALUES (
+	(SELECT id FROM COURSE WHERE name = 'API REST - Spring Boot'),
+	(SELECT id FROM USER WHERE name='Joao')
+);
+
+INSERT INTO COURSE_USER (course_id,user_id) VALUES (
+	(SELECT id FROM COURSE WHERE name = 'SASS - Super CSS'),
+	(SELECT id FROM USER WHERE name='Joao')
+);
+
+INSERT INTO COURSE_USER (course_id,user_id) VALUES (
+	(SELECT id FROM COURSE WHERE name = 'SPA with React'),
+	(SELECT id FROM USER WHERE name='Joao')
+);
+
+
+--Create Ativities
+
+

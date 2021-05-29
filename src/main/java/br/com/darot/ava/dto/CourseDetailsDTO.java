@@ -15,23 +15,33 @@
  */
 package br.com.darot.ava.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import br.com.darot.ava.models.Course;
 import lombok.Data;
 
 @Data
-public class CourseDTO {
+public class CourseDetailsDTO {
 
 	private Long id;
 	private String name;
 	private String nickname;
+	private String description;
 	private int duration;
+	private List<AuthorDTO> authors = new ArrayList<>();
+	private List<SubjectDTO> subjects = new ArrayList<>();
 
-	public static CourseDTO convert(Course course) {
-		var dto = new CourseDTO();
+	public static CourseDetailsDTO convert(Course course) {
+		var dto = new CourseDetailsDTO();
 		dto.setId(course.getId());
 		dto.setName(course.getName());
 		dto.setNickname(course.getNickname());
-		dto.setDuration(course.getDuration());
+		dto.setDescription(course.getDescription());
+		dto.setAuthors(course.getUsers().stream().map(AuthorDTO::convert).collect(Collectors.toList()));
+		dto.setSubjects(course.getSubjects().stream().map(SubjectDTO::convert).collect(Collectors.toList()));
 		return dto;
 	}
+
 }

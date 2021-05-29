@@ -13,36 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package br.com.darot.ava.models;
-
-import java.util.List;
-
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+package br.com.darot.ava.form;
 
 import lombok.Data;
 
-@Entity
 @Data
-public class Subject {
+public class SubjectFormUpdate {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
 	private String title;
 	private Integer sequence;
-
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "subject_id", referencedColumnName = "id")
-	private List<Activity> activities;
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Course course;
 
 }

@@ -15,7 +15,6 @@
  */
 package br.com.darot.ava.models;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -23,6 +22,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
@@ -34,15 +35,20 @@ public class Course {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	private String name;
 	private String nickname;
 	private String description;
-	private int duration;
+	private Integer duration;
 
 	@ManyToMany(fetch = FetchType.LAZY)
-	private List<User> authors;
+	@JoinTable(name = "course_user", joinColumns = {
+			@JoinColumn(name = "course_id", referencedColumnName = "id", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, updatable = false) })
+	private List<User> users;
 
 	@OneToMany(fetch = FetchType.LAZY)
-	List<Subject> subjects = new ArrayList<>();
+	@JoinColumn(name = "course_id", referencedColumnName = "id")
+	private List<Subject> subjects;
+
 }

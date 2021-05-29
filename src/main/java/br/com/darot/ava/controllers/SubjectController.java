@@ -16,7 +16,6 @@
 package br.com.darot.ava.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
@@ -32,45 +31,46 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.darot.ava.dto.CourseDTO;
-import br.com.darot.ava.dto.CourseDetailsDTO;
-import br.com.darot.ava.form.CourseForm;
-import br.com.darot.ava.form.CourseFormUpdate;
-import br.com.darot.ava.services.CourseService;
+import br.com.darot.ava.dto.SubjectDTO;
+import br.com.darot.ava.dto.SubjectDetailsDTO;
+import br.com.darot.ava.form.SubjectForm;
+import br.com.darot.ava.form.SubjectFormUpdate;
+import br.com.darot.ava.services.SubjectService;
 import javassist.NotFoundException;
 
 @RestController
-@RequestMapping("/courses")
-public class CourseController {
+@RequestMapping("/courses/{courseId}/subjects")
+public class SubjectController {
 
 	@Autowired
-	private CourseService courseService;
-
-	@GetMapping
-	public List<CourseDTO> findAll() {
-		return courseService.findAll();
-	}
+	private SubjectService subjectService;
 
 	@GetMapping("/{id}")
 	@Transactional
-	public ResponseEntity<CourseDetailsDTO> findById(@PathVariable Long id) {
-		Optional<CourseDetailsDTO> courseDetailsDTO = courseService.findById(id);
-		if (courseDetailsDTO.isPresent())
-			return ResponseEntity.ok(courseDetailsDTO.get());
-		return ResponseEntity.notFound().build();
+	public ResponseEntity<SubjectDetailsDTO> findById(@PathVariable Long id) {
+		try {
+			return ResponseEntity.ok(subjectService.findById(id));
+		} catch (NotFoundException e) {
+			return ResponseEntity.notFound().build();
+		}
+	}
+
+	@GetMapping
+	public ResponseEntity<List<SubjectDTO>> findAllSubjectByCourseId(@PathVariable Long courseId) {
+		return ResponseEntity.ok(subjectService.findAllSubjectByCourseId(courseId));
 	}
 
 	@PostMapping
 	@Transactional
-	public ResponseEntity<CourseDTO> create(@RequestBody @Valid CourseForm courseForm) {
-		return ResponseEntity.ok(courseService.createCourse(courseForm)); // TODO return status CREATED with URI
+	public SubjectDTO create(@PathVariable Long courseId, @RequestBody SubjectForm subjectForm) {
+		return subjectService.create(courseId, subjectForm);// TODO return status CREATED with URI
 	}
 
 	@PutMapping("/{id}")
 	@Transactional
-	public ResponseEntity<CourseDTO> update(@PathVariable Long id, @RequestBody @Valid CourseFormUpdate formUpdate) {
+	public ResponseEntity<SubjectDTO> update(@PathVariable Long id, @RequestBody @Valid SubjectFormUpdate formUpdate) {
 		try {
-			return ResponseEntity.ok(courseService.update(id, formUpdate));
+			return ResponseEntity.ok(subjectService.update(id, formUpdate));
 		} catch (Exception e) {
 			return ResponseEntity.notFound().build();
 		}
@@ -79,10 +79,12 @@ public class CourseController {
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete(@PathVariable Long id) {
 		try {
-			courseService.delete(id);
+			subjectService.delete(id);
 			return ResponseEntity.ok().build();
 		} catch (NotFoundException e) {
 			return ResponseEntity.notFound().build();
 		}
 	}
+
+
 }
