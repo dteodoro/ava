@@ -47,9 +47,9 @@ public class SubjectController {
 
 	@GetMapping("/{id}")
 	@Transactional
-	public ResponseEntity<SubjectDetailsDTO> findById(@PathVariable Long id) {
+	public ResponseEntity<SubjectDetailsDTO> findById(@PathVariable Long courseId, @PathVariable Long id) {
 		try {
-			return ResponseEntity.ok(subjectService.findById(id));
+			return ResponseEntity.ok(subjectService.findByIdAndCourseId(id,courseId));
 		} catch (NotFoundException e) {
 			return ResponseEntity.notFound().build();
 		}

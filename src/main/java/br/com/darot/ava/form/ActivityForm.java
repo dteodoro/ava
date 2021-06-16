@@ -15,6 +15,15 @@
  */
 package br.com.darot.ava.form;
 
-public class ActivityForm {
+import br.com.darot.ava.models.enumerators.ActivityTypeEnum;
+import lombok.Data;
 
+@Data
+public class ActivityForm {
+	
+	private Long id;
+	private String title;
+	private String activityType;
+	private Long serviceId;
+	
 }

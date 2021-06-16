@@ -31,8 +31,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.darot.ava.dto.ActivityDTO;
+import br.com.darot.ava.dto.SubjectDetailsDTO;
 import br.com.darot.ava.form.ActivityForm;
 import br.com.darot.ava.services.ActivityService;
+import br.com.darot.ava.services.CourseService;
+import br.com.darot.ava.services.SubjectService;
+import javassist.NotFoundException;
 
 @RestController
 @RequestMapping("/courses/{courseId}/subjects/{subjectId}/activities")
@@ -40,10 +44,13 @@ public class ActivityController {
 
 	@Autowired
 	private ActivityService activityService;
+	
+	@Autowired
+	private SubjectService subjectService;
 
 	@GetMapping("/{id}")
-	public ResponseEntity<ActivityDTO> findById(@PathVariable Long id) {
-		Optional<ActivityDTO> activity = activityService.findById(id);
+	public ResponseEntity<ActivityDTO> findById(@PathVariable Long id, @PathVariable Long subjectId) {
+		Optional<ActivityDTO> activity = activityService.findById(id,subjectId);
 		if (activity.isPresent())
 			return ResponseEntity.ok(activity.get());
 		return ResponseEntity.notFound().build();
@@ -56,7 +63,12 @@ public class ActivityController {
 
 	@PostMapping
 	@Transactional
-	public ResponseEntity<ActivityDTO> create(@RequestBody @Valid ActivityForm activityForm) {
-		return ResponseEntity.ok(activityService.createCourse(activityForm)); // TODO return status CREATED with URI
+	public ResponseEntity<ActivityDTO> create(@PathVariable Long courseId, @PathVariable Long subjectId, @RequestBody @Valid ActivityForm activityForm) {
+		if(subjectService.existsByIdAndCourseId(subjectId, courseId)) {
+			activityForm.setServiceId(subjectId);
+			return ResponseEntity.ok(activityService.createCourse(activityForm)); // TODO return status CREATED with URI
+		}else {
+			return ResponseEntity.notFound().build();
+		}
 	}
 }
