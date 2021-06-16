@@ -15,7 +15,10 @@
  */
 package br.com.darot.ava.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,8 +34,10 @@ public class Activity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long id;	
 	private String title;
+	@Column(name = "activity_type")
+	@Enumerated(value = EnumType.STRING)
 	private ActivityTypeEnum activityType;
 
 	@ManyToOne(fetch = FetchType.LAZY)

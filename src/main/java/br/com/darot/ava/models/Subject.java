@@ -38,8 +38,7 @@ public class Subject {
 	private String title;
 	private Integer sequence;
 
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "subject_id", referencedColumnName = "id")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "subject")
 	private List<Activity> activities;
 
 	@ManyToOne(fetch = FetchType.LAZY)

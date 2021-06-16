@@ -50,8 +50,8 @@ public class SubjectService {
 		return SubjectDTO.convert(repository.save(subject));
 	}
 
-	public SubjectDetailsDTO findById(Long subjectId) throws NotFoundException {
-		Optional<Subject> subject = repository.findById(subjectId);
+	public SubjectDetailsDTO findByIdAndCourseId(Long subjectId, Long courseId) throws NotFoundException {
+		Optional<Subject> subject = repository.findByIdAndCourseId(subjectId, courseId);
 		if (subject.isPresent())
 			return SubjectDetailsDTO.convert(subject.get());
 		throw new NotFoundException("Subject id not found");
@@ -78,5 +78,9 @@ public class SubjectService {
 			return SubjectDTO.convert(subject.get());
 		}
 		throw new NotFoundException("Invalid Subject Id");
+	}
+	
+	public boolean existsByIdAndCourseId(Long subjectId, Long courseId) {
+		return repository.existsByIdAndCourseId(subjectId,courseId);
 	}
 }

@@ -16,6 +16,7 @@
 package br.com.darot.ava.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -26,5 +27,6 @@ import br.com.darot.ava.models.Activity;
 public interface ActivityRepository extends JpaRepository<Activity, Long> {
 
 	public List<Activity> findBySubjectId(Long subjectId);
+	public Optional<Activity> findByIdAndSubjectId(Long id, Long subjectId);
 
 }

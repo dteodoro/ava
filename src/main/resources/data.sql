@@ -47,7 +47,40 @@ INSERT INTO COURSE_USER (course_id,user_id) VALUES (
 	(SELECT id FROM USER WHERE name='Joao')
 );
 
+--Create Subject
+
+INSERT INTO SUBJECT (sequence, title, course_id) VALUES (1,'WEEK 1',1);
+INSERT INTO SUBJECT (sequence, title, course_id) VALUES (2,'WEEK 2',1);
+INSERT INTO SUBJECT (sequence, title, course_id) VALUES (3,'WEEK 3',1);
+INSERT INTO SUBJECT (sequence, title, course_id) VALUES (4,'WEEK 4',1);
+
+INSERT INTO SUBJECT (sequence, title, course_id) VALUES (1,'WEEK 1',2);
+INSERT INTO SUBJECT (sequence, title, course_id) VALUES (2,'WEEK 2',2);
+INSERT INTO SUBJECT (sequence, title, course_id) VALUES (3,'WEEK 3',2);
+INSERT INTO SUBJECT (sequence, title, course_id) VALUES (4,'WEEK 4',2);
+
+INSERT INTO SUBJECT (sequence, title, course_id) VALUES (1,'WEEK 1',3);
+INSERT INTO SUBJECT (sequence, title, course_id) VALUES (2,'WEEK 2',3);
+INSERT INTO SUBJECT (sequence, title, course_id) VALUES (3,'WEEK 3',3);
+INSERT INTO SUBJECT (sequence, title, course_id) VALUES (4,'WEEK 4',3);
 
 --Create Ativities
+INSERT INTO ACTIVITY (title,subject_id ) VALUES ('Activity 1', (SELECT id FROM SUBJECT WHERE course_id = 1 AND title ='WEEK 1'));
+INSERT INTO ACTIVITY (title,subject_id ) VALUES ('Activity 2', (SELECT id FROM SUBJECT WHERE course_id = 1 AND title ='WEEK 1'));
+INSERT INTO ACTIVITY (title,subject_id ) VALUES ('Activity 3', (SELECT id FROM SUBJECT WHERE course_id = 1 AND title ='WEEK 1'));
+INSERT INTO ACTIVITY (title,subject_id ) VALUES ('Activity 4', (SELECT id FROM SUBJECT WHERE course_id = 1 AND title ='WEEK 1'));
 
+INSERT INTO ACTIVITY (title,subject_id ) VALUES ('Activity 1', (SELECT id FROM SUBJECT WHERE course_id = 1 AND title ='WEEK 2'));
+INSERT INTO ACTIVITY (title,subject_id ) VALUES ('Activity 2', (SELECT id FROM SUBJECT WHERE course_id = 1 AND title ='WEEK 2'));
+INSERT INTO ACTIVITY (title,subject_id ) VALUES ('Activity 3', (SELECT id FROM SUBJECT WHERE course_id = 1 AND title ='WEEK 2'));
+INSERT INTO ACTIVITY (title,subject_id ) VALUES ('Activity 4', (SELECT id FROM SUBJECT WHERE course_id = 1 AND title ='WEEK 2'));
 
+INSERT INTO ACTIVITY (title,subject_id ) VALUES ('Activity 1', (SELECT id FROM SUBJECT WHERE course_id = 1 AND title ='WEEK 3'));
+INSERT INTO ACTIVITY (title,subject_id ) VALUES ('Activity 2', (SELECT id FROM SUBJECT WHERE course_id = 1 AND title ='WEEK 3'));
+INSERT INTO ACTIVITY (title,subject_id ) VALUES ('Activity 3', (SELECT id FROM SUBJECT WHERE course_id = 1 AND title ='WEEK 3'));
+INSERT INTO ACTIVITY (title,subject_id ) VALUES ('Activity 4', (SELECT id FROM SUBJECT WHERE course_id = 1 AND title ='WEEK 3'));
+
+INSERT INTO ACTIVITY (title,subject_id ) VALUES ('Activity 1', (SELECT id FROM SUBJECT WHERE course_id = 1 AND title ='WEEK 4'));
+INSERT INTO ACTIVITY (title,subject_id ) VALUES ('Activity 2', (SELECT id FROM SUBJECT WHERE course_id = 1 AND title ='WEEK 4'));
+INSERT INTO ACTIVITY (title,subject_id ) VALUES ('Activity 3', (SELECT id FROM SUBJECT WHERE course_id = 1 AND title ='WEEK 4'));
+INSERT INTO ACTIVITY (title,subject_id ) VALUES ('Activity 4', (SELECT id FROM SUBJECT WHERE course_id = 1 AND title ='WEEK 4'));

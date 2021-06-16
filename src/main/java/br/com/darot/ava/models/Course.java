@@ -47,8 +47,7 @@ public class Course {
 					@JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false, updatable = false) })
 	private List<User> users;
 
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "course_id", referencedColumnName = "id")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "course")
 	private List<Subject> subjects;
 
 }
