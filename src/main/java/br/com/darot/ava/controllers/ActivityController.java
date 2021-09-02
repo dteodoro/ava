@@ -31,12 +31,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.darot.ava.dto.ActivityDTO;
-import br.com.darot.ava.dto.SubjectDetailsDTO;
 import br.com.darot.ava.form.ActivityForm;
 import br.com.darot.ava.services.ActivityService;
-import br.com.darot.ava.services.CourseService;
 import br.com.darot.ava.services.SubjectService;
-import javassist.NotFoundException;
 
 @RestController
 @RequestMapping("/courses/{courseId}/subjects/{subjectId}/activities")

@@ -25,10 +25,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.darot.ava.dto.ActivityDTO;
-import br.com.darot.ava.dto.SubjectDTO;
 import br.com.darot.ava.form.ActivityForm;
 import br.com.darot.ava.models.Activity;
-import br.com.darot.ava.models.Course;
 import br.com.darot.ava.models.Subject;
 import br.com.darot.ava.models.enumerators.ActivityTypeEnum;
 import br.com.darot.ava.repository.ActivityRepository;

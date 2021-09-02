@@ -15,7 +15,6 @@
  */
 package br.com.darot.ava.form;
 
-import br.com.darot.ava.models.enumerators.ActivityTypeEnum;
 import lombok.Data;
 
 @Data
